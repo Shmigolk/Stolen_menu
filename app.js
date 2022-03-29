@@ -77,6 +77,18 @@ const sectionCenter = document.querySelector('.section-center');
 window.addEventListener('DOMContentLoaded', () => {
   displayMenuItems(menu)
 })
+const filterBtns = document.querySelectorAll('.filter-btn')
+
+filterBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const category =  e.currentTarget.dataset.id;
+    const menuCategory = menu.filter( (menuItem) => {
+      if (menuItem.category === category || category === 'all') return menuItem;
+    })
+    displayMenuItems(menuCategory);
+  })
+})
+
 
 function displayMenuItems(menuItems) {
   let displayMenu = menuItems.map((item) => {
